@@ -1,6 +1,4 @@
-$(document).ready(function() {
-	$('#sidebar').load('sidebar.html div.wrap', function(data) {
-		console.log(data);
-	});
+$(function() {
+	$('#sidebar').load('sidebar.html');
 	$('#header').load('header.html div.wrap');
 })
