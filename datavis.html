@@ -82,8 +82,8 @@
 						
 						<figure><img src="img/dataviz/dataviz FINAL Changes in children's mental health - 1 year of the pandemic.png" alt="image" width="1080" height="1080" /></figure>
 							<h1><br />Codes used</h1>
-							<code>#calculate Percentages<br />
-wholesample <- dataSDQcase_long %>%<br />
+							<p>I first tidied the messy dataset to calculate percentages.</p>
+							<code>wholesample <- dataSDQcase_long %>%<br />
   filter(Severity != "NA") %>%<br />
    filter(Time_Month != "NA") %>%<br />
     dplyr::count(Time_Month, SDQ_caseness, Severity) %>%<br />
@@ -91,11 +91,11 @@ group_by(Time_Month, SDQ_caseness) %>%<br />
     mutate(Percentage = (n / sum(n)) * 100) %>%<br />
   ungroup()<br />
 
-wholesample$Severity <- factor(wholesample$Severity, levels = c(0:1), labels = c("Unlikely", "Likely"))<br />
+wholesample$Severity <- factor(wholesample$Severity, levels = c(0:1), labels = c("Unlikely", "Likely"))<br /></code>
 
 
-# graph here<br />
-p <-  ggplot(subset(wholesample, Severity == "Likely"), <br />
+<p><br />I then used ggplot2 and geom_area to create the area graphs and set the background as transparent.</p>
+<code>p <-  ggplot(subset(wholesample, Severity == "Likely"), <br />
          aes(x = Time_Month, y = Percentage)) + <br />
     geom_area(stat = "identity", group = 1, color="#0B747A", fill="#0B747A", alpha = 0.2) +<br /> coord_cartesian(ylim = c(0,50))+ <br />
    labs(x = NULL, y = 'Percentage %') + facet_wrap(~ SDQ_caseness, ncol=5) +<br />
@@ -112,7 +112,8 @@ p <-  ggplot(subset(wholesample, Severity == "Likely"), <br />
         ) # to create a transparent background <br />
 
  
-  ggsave("children_mentalhealth.png", p, bg = "transparent", width = 17, height = 3.6)</code>
+  ggsave("children_mentalhealth.png", p, bg = "transparent", width = 17, height = 3.6)
+</code>
 						</article>
 						
 						<p><br />
