@@ -20,6 +20,33 @@
 		  margin-left: 90px;
 		  margin-right: 45px;
 		}
+		#myDIV {
+			width: 100%;
+			margin-top: 20px;
+		}
+
+
+		.collapsible {
+			background-color: #FF7F50;
+			color: white;
+			cursor: pointer;padding: 10px;
+			width: auto;
+			border: none;
+			text-align: center;
+			outline: none;
+			font-size: 15px;
+		}
+
+
+		.active, .collapsible:hover {
+			background-color: #D2691E;
+		}
+
+		.content {
+			padding: 0 18px;
+			display: none;
+			overflow: hidden;
+		}
 	</style>
 
 
@@ -76,10 +103,10 @@
 						
 						<!-- EDIT HERE -->
 						<div class ="a">
-							<h1>How common is the name Adrienne for a girl?</h1>
+							<h1>That't not my name, that's not mah name!</h1>
 							<p><b>Date created</b>: March 2021<br /><b>Tools used</b>: R (ggplot2, gganimate)</p>
-							<p><b>My name is Adrienne </b>and it's pronounced <i>A-dree-anne</i> or <i>A-dree-un</i>. My name is uncommon in Singapore and it's often confused as Adrian, the male version of the name. And so when I tell people my name, I'm very used to getting the same reaction: <i>"Adri- What?" </i> or<i> "Isn't that a guy's name?"</i></p> 
-							<p>In this visualisation, I wanted to look at the popularity of the name Adrian (and its variants, e.g. <i> Adrienne, Adrien, Adrianne, Adriane...</i>) over time and see whether it was always predominantly a boy's name. To my surprise, that wasn't always the case.</p>
+							<p><b>My name is Adrienne </b>and it's pronounced <i>A-dree-anne</i> or <i>A-dree-un</i>. It is an uncommon name in Singapore and often confused with Adrian, the male version of this name. Often times when I tell people my name, I will get a confused reaction: <i>"Adri- What?" </i> or<i> "Isn't that a guy's name?"</i></p> 
+							<p>In this visualisation, I wanted to look at the history of the name Adrian (and its different variants, e.g. <i> Adrienne, Adrien, Adrianne, Adriane...</i>) over time to see whether it has always been a male name. To my surprise, that hasn't always been the case.</p>
 
 							<p><b>Number of <span style="color:cornflowerblue">boys</span> and <span style="color:crimson">girls</span> named Adrian (and it's variants) over time</b></p>
 						
@@ -88,7 +115,7 @@
 						<p></br></p>
 						<p></p>
 
-						<p><b>After taking a closer look</b>, it's clear that the number of boys and girls called Adrian were roughly the same up until around 1980s. After that time, you can see that there was a coninuous increase in boys named Adrian but a sharp decrease among girls</p>
+						<p><b>After taking a closer look</b>, it's clear that the number of boys and girls called Adrian were roughly the same up until around 1980s. At some point in the 1980s, there was a departure from the trend. The number of boys named Adrian continued to rise but there was a sharp decrease in girls named Adrian.</p>
 
 						<p></p>
 
@@ -97,7 +124,7 @@
 				<p></p>
 
 
-						<p><b>So what happened before the 1980s?</b><br /> Why was the name so popular among girls? Turns out, the name owes its popularity to the female celebrities in the 20th century. During that time, contemporary actress <a href="https://en.wikipedia.org/wiki/Adrienne_Barbeau" target="_blank"> <span style="color:blue">Adrienne Barbeau </span></a> starred in a highly popular sitcom (1972-1978). The number of girls named Adrian peaked in the late 70s and early 80s. It was due to the famous actress that the name was as popular among girls as boys. </p>
+						<p><b>So what happened before the 1980s?</b><br /> Why was the name so popular among girls? Turns out, the name owes its popularity to the female celebrities in the 20th century. During that time, contemporary actress <a href="https://en.wikipedia.org/wiki/Adrienne_Barbeau" target="_blank"> <span style="color:blue">Adrienne Barbeau </span></a> starred in a highly popular sitcom (1972-1978). The number of girls named Adrian peaked in the late 70s and early 80s. The famous actress had made the name very popular among girls as boys. </p>
 
 						
 
@@ -122,47 +149,81 @@
                         <figure><img src="img/dataviz/names_gender_13x.svg" alt="image" width="1080" height="1080" class="center_full"/></figure>			
 
 				<p></p>	
-				        <p><b>In the 21st century</b>, you're 13 times more likely to find a guy called Adrian than a girl. It's a pity that the name has lost it's popularity among girls, having said that, I adore the name that my parents gave me and enjoyed learning a bit about the history of this name through the making of this data vis.</p>
+				        <p><b>In the 21st century</b>, you're 13 times more likely to find a guy called Adrian than a girl. It's a pity that the name lost it's popularity among girls. Having said that, I adore the name that my parents gave me and enjoyed this fun exercise learning a bit about the history of my name</p>
 
-				        <p> <span style="color:grey">Data from the R package called "babynames" and the information about history of the name is from www.ohbabynames.com (Check out your name on their website, you might learn something new :). </span></p>
-				        		
-
-
-<!--
-
-							<p><br />Codes used</p>
-							<p>First, load the packages required to make the animation</p>
-							<code>wholesample <- dataSDQcase_long %>%<br />
-  filter(Severity != "NA") %>%<br />
-   filter(Time_Month != "NA") %>%<br />
-    dplyr::count(Time_Month, SDQ_caseness, Severity) %>%<br />
-group_by(Time_Month, SDQ_caseness) %>%<br />
-    mutate(Percentage = (n / sum(n)) * 100) %>%<br />
-  ungroup()<br />
-
-wholesample$Severity <- factor(wholesample$Severity, levels = c(0:1), labels = c("Unlikely", "Likely"))<br /></code>
+				        <p> <span style="color:grey">Data from the R package called "babynames" and the information of the name is from www.ohbabynames.com (Check out your name on their website, you might learn something new :). </span></p>
+				
 
 
-<p><br />I then used ggplot2 and geom_area to create the area graphs and set the background as transparent.</p>
-<code>p <-  ggplot(subset(wholesample, Severity == "Likely"), <br />
-         aes(x = Time_Month, y = Percentage)) + <br />
-    geom_area(stat = "identity", group = 1, color="#0B747A", fill="#0B747A", alpha = 0.2) +<br /> coord_cartesian(ylim = c(0,50))+ <br />
-   labs(x = NULL, y = 'Percentage %') + facet_wrap(~ SDQ_caseness, ncol=5) +<br />
-   theme(legend.title = element_blank(), legend.position="right") + <br />
-   geom_vline(xintercept= 5, linetype="longdash", colour = "black") + # to create vertical lines<br />
-   geom_vline(xintercept= 10.5, linetype="solid", colour = "black") + <br />
-      theme(legend.title = element_blank(), legend.position="right") +<br />
-   theme_blank() +<br />
-       theme(<br />
-        panel.grid.major = element_blank(), <br />
-        panel.grid.minor = element_blank(),<br />
-        panel.background = element_rect(fill = "transparent",colour = NA),<br />
-        plot.background = element_rect(fill = "transparent",colour = NA)<br />
-        ) # to create a transparent background <br />
+<button type="button" class="collapsible">Click here to see my codes</button>
 
- 
-  ggsave("children_mentalhealth.png", p, bg = "transparent", width = 17, height = 3.6)
-</code> -->
+
+<div class="content">
+	<code>
+		# You will need these packages <br />
+		library(tidyverse)<br />
+		install.packages("gganimate")<br />
+		library(gganimate)<br />
+		install.packages("remotes")<br />
+		remotes::install_github("R-CoderDotCom/ggcats@main")<br />
+		library(ggcats)<br />
+		install.packages('gifski')<br />
+		install.packages('png')<br />
+	</code>
+
+	<code>
+		# Load and tidy up dataset<br />
+		library(babynames)<br />
+		baby_data <- data.frame(babynames)<br />
+	</code>
+
+	<code>
+		baby_data$name <- ifelse(baby_data$name == "Adrien", "Adrienne",
+                    ifelse(baby_data$name == "Adrian", "Adrienne",
+                  ifelse(baby_data$name == "Adrianne", "Adrienne",
+                          baby_data$name)))
+    </code>
+
+    <code>
+    	baby <- baby_data %>%<br />
+    	filter(name == "Adrienne") %>%<br />
+    	dplyr::select(-c(prop)) %>%<br />
+    	dplyr::group_by(year, sex) %>%<br />
+    	summarise(n = sum(n))<br />
+    </code>
+
+
+    <code>  
+    	# Choose cat image   <br />
+    	baby$cat <- rep(NA, 269)<br />
+    	baby$cat[which(baby$sex == "F")] <- "mouth"<br />
+    	baby$cat[which(baby$sex == "M")] <- "toast"   <br />
+    </code>
+
+
+    <code>   
+    	# Plot gif <br />
+    	ggplot(baby, aes(x = year, y = n, group = sex, color = sex)) +<br />
+    	geom_line(size =2) +<br />
+    	geom_cat(aes(cat = cat), size = 5) +<br />
+    	transition_reveal(year) +<br />   
+    	xlab("Year (1880 - 2017)") +<br />
+    	ylab("Count") +<br />
+    	theme_grey() +<br />
+    	theme(legend.position = "none",<br />
+    	plot.title = element_text(size = 20))+<br />
+    	theme(<br />
+    	panel.background = element_rect(fill = "#FFF6EB",<br />
+    	colour = "#FFF6EB",<br />
+    	size = 0.5, linetype = "solid"),<br />
+    	panel.grid.major = element_line(size = 0.5, linetype = 'solid', colour = "white"), panel.grid.minor = element_line(size = 0.25, linetype = 'solid', colour = "white"), plot.background = element_rect(fill = "#FFF6EB"))
+    </code> 
+</div>
+
+
+
+
+
 						</article>
 						
 						<p><br />
@@ -182,6 +243,27 @@ wholesample$Severity <- factor(wholesample$Severity, levels = c(0:1), labels = c
 
 	<!-- Other stuff -->
 	<script src="content_handler.js"></script>
+
+
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+
+
 	<!--script type="text/javascript" nonce="wLYyHvG0PGH2eBFppel5sorHFQ">!function(s){s.src='https://px.srvcs.tumblr.com/impixu?T=1581179388&J=eyJ0eXBlIjoicG9zdCIsInVybCI6Imh0dHA6Ly9jaGFlcmVlbi5jb20vdGFnZ2VkL3NuYXBzIiwicmVxdHlwZSI6MCwicm91dGUiOiIvdGFnZ2VkLzp0YWciLCJwb3N0cyI6W3sicG9zdGlkIjoiMTkwMTM2NDgxNTQxIiwiYmxvZ2lkIjoyNjI4NDk1NjgsInNvdXJjZSI6MzN9LHsicG9zdGlkIjoiMTc0MDMyOTEyODgxIiwiYmxvZ2lkIjoyNjI4NDk1NjgsInNvdXJjZSI6MzN9XX0=&U=BJNHIDGANG&K=ad59a7d37968f236d4a9de490e29100109c670b1c6cd67144ca55db77fb3be5b&R=https%3A%2F%2Fadrienne.com%2Ftagged%2Fbrands'.replace(/&R=[^&$]*/,'').concat('&R='+escape(document.referrer)).slice(0,2000).replace(/%.?.?$/,'');}(new Image());</script-->
 	<noscript><img style="position:absolute;z-index:-3334;top:0px;left:0px;visibility:hidden;" src="https://px.srvcs.tumblr.com/impixu?T=1581179388&J=eyJ0eXBlIjoicG9zdCIsInVybCI6Imh0dHA6Ly9jaGFlcmVlbi5jb20vdGFnZ2VkL3NuYXBzIiwicmVxdHlwZSI6MCwicm91dGUiOiIvdGFnZ2VkLzp0YWciLCJwb3N0cyI6W3sicG9zdGlkIjoiMTkwMTM2NDgxNTQxIiwiYmxvZ2lkIjoyNjI4NDk1NjgsInNvdXJjZSI6MzN9LHsicG9zdGlkIjoiMTc0MDMyOTEyODgxIiwiYmxvZ2lkIjoyNjI4NDk1NjgsInNvdXJjZSI6MzN9XSwibm9zY3JpcHQiOjF9&U=BJNHIDGANG&K=e2ee8af88bea7a690409f2b6a49f2f7406f1fd992315b66e373bdbc60940e02a&R=https%3A%2F%2Fadrienne.com%2Ftagged%2Fbrands"></noscript>
 	<script src="https://assets.tumblr.com/client/prod/standalone/tumblelog/index.build.js?_v=d23ca857138a7079c5cb1cc58bd8eaee"></script>
